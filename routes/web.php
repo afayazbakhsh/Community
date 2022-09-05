@@ -5,7 +5,7 @@ use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +25,7 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::resource('communities', CommunityController::class);
     Route::resource('communities.posts', CommunityPostController::class);
     Route::resource('posts.comments',PostCommentController::class);
+    Route::resource('profiles',UserProfileController::class);
 
 });
 

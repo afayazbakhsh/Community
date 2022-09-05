@@ -76,6 +76,10 @@
                                     <a class="dropdown-item" href="{{ route('communities.index') }}">
                                         {{ __('My Communities') }}
                                     </a>
+
+                                    <a class="dropdown-item" href="{{ route('users.profiles.index') }}">
+                                        {{ __('My Profile') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest
