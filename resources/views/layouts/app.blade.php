@@ -77,7 +77,7 @@
                                         {{ __('My Communities') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('users.profiles.index') }}">
+                                    <a class="dropdown-item" href="{{ route('profiles.index') }}">
                                         {{ __('My Profile') }}
                                     </a>
                                 </div>
