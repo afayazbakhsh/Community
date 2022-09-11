@@ -18,8 +18,6 @@ class TagFactory extends Factory
      */
     public function definition()
     {
-
-
         foreach(Post::all() as $post){
 
             $post->tags()->create([
