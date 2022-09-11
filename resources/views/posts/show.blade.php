@@ -64,6 +64,21 @@
                         @endforelse
                     </div>
 
+                    <hr>
+                    <h2>Tags</h2>
+                    <hr>
+
+                    <div class="card-footer">
+                        @forelse ($post->tags as $tag)
+                            <div>
+                                <p>{{ $tag->name }}</p>
+                            </div>
+                            <hr>
+                        @empty
+                            NO Comment yet
+                        @endforelse
+                    </div>
+
                 </div>
 
             </div>

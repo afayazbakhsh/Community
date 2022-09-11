@@ -41,4 +41,8 @@ class Community extends Model
     public function getRouteKeyName(){
         return 'slug';
     }
+
+    public function tags(){
+        return $this->morphMany(Tag::class,'taggable');
+    }
 }

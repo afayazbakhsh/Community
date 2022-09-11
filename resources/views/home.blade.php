@@ -18,6 +18,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>Tags Count</th>
                                     <th>Posts Count</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,9 @@
 
                                         <td>
                                             {{ $community->description }}
+                                        </td>
+                                        <td>
+                                            {{ $community->tags()->count() }}
                                         </td>
                                         <td>
                                             {{ $community->posts_count }}
