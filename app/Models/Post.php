@@ -31,4 +31,8 @@ class Post extends Model
         return $this->belongsTo(Community::class);
     }
 
+    public function tags(){
+        return $this->morphMany(Tag::class,'taggable');
+    }
+
 }
