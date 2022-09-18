@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Post;
 use App\Models\Comment;
+use Cviebrock\EloquentTaggable\Taggable;
 
 class Post extends Model
 {
-    use HasFactory  ,   SoftDeletes;
-
+    use HasFactory  ,   SoftDeletes, Taggable;
     protected $fillable = [
         'user_id',
         'community_id',
@@ -22,17 +22,12 @@ class Post extends Model
         'vote_id'
     ];
 
-
     public function comments(){
         return $this->hasMany(Comment::class)->latest();
     }
 
     public function community(){
         return $this->belongsTo(Community::class);
-    }
-
-    public function tags(){
-        return $this->morphMany(Tag::class,'taggable');
     }
 
 }

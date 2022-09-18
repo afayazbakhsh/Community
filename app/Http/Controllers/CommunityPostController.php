@@ -40,13 +40,17 @@ class CommunityPostController extends Controller
      */
     public function store(StoreCommunityPostRequest $request,Community $community)
     {
-
         $post = $community->posts()->create([
             'user_id'=>auth()->id(),
             'title'=> $request->title,
             'post_text'=>  $request->post_text ?? null,
             'post_url'=>  $request->post_url ?? null,
         ]);
+
+            //create tags
+        $tags = explode(',',$request->post_tags);
+        $post->tag($tags);
+            //create tags
 
         if($request->hasFile('post_image')){
 
@@ -112,5 +116,9 @@ class CommunityPostController extends Controller
         }
         $post->delete();
         return redirect()->route('communities.show',compact('community'));
+    }
+
+    public function tagResult(){
+
     }
 }
