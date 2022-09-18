@@ -9,6 +9,7 @@ use App\Http\Requests\Post\StoreCommunityPostRequest;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Log;
 use App\Events\Post\CreatePostEvent;
 class CommunityPostController extends Controller
 {
@@ -62,7 +63,7 @@ class CommunityPostController extends Controller
      */
     public function show(Community $community , Post $post)
     {
-
+        $post->with('tags');
         return view('posts.show',compact(['community','post']));
     }
 
@@ -75,7 +76,6 @@ class CommunityPostController extends Controller
     public function edit(Community $community,Post $post)
     {
         return view('posts.edit',compact(['community','post']));
-
     }
 
     /**
@@ -92,8 +92,6 @@ class CommunityPostController extends Controller
         }
         //update all except image
         $post->update($request->validated());
-
-
         if($request->hasFile('post_image')){
 
             event(new CreatePostEvent($post,$request));
