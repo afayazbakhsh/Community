@@ -25,7 +25,7 @@ class ViewsAppProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('newCommunities', Community::withCount('posts')->latest()->take(10)->get());
+        View::share('newCommunities', Community::withCount(['posts'])->latest()->take(10)->get());
         View::share('newPosts', Post::latest()->take(10)->get());
     }
 }

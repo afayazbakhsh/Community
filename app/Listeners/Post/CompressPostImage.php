@@ -5,7 +5,9 @@ namespace App\Listeners\Post;
 use App\Events\post\CreatePostEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use App\Classes\ImageMaker;
 class CompressPostImage
 {
     /**
@@ -27,24 +29,13 @@ class CompressPostImage
     public function handle(CreatePostEvent $event)
     {
 
-        $image = 'thumpnail_'.$event->input->file('post_image')->getClientOriginalName();
+        $image_path = $event->post->id.'/thumpnail_'.$event->request->file('post_image')->getClientOriginalName();
 
-        $event->input->file('post_image')->storeAS('public/posts/'.$event->post->id, $image);
+        Log::info("start making image");
+        $image = ImageMaker::makeAndStore($event->request->file('post_image'),$image_path);
 
-        if($event->post->post_image != ''){
+        // $event->post->update(['post_image'=> $path]);
 
-            unlink(storage_path('app/public/posts/'.$event->post->id.'/'.$event->post->post_image));
-        }
 
-        $event->post->update(['post_image'=> $image]);
-
-        $img = Image::make(storage_path('app/public/posts/'.$event->post->id.'/'.$image));
-        $img->resize(400, 500);
-
-        // $img->resize(300, 300, function ($constraint) {
-        //     $constraint->aspectRatio();
-        // });
-
-        $img->save(storage_path('app/public/posts/'.$event->post->id.'/'.$image),60);
     }
 }

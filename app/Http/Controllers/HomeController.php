@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $communities = Community::with('posts')->withCount(['posts'])->orderBy('posts_count','desc')->take(5)->get();
+        $communities = Community::withCount(['posts','tags'])->orderBy('posts_count','desc')->take(5)->get();
         return view('/home',['communities'=>$communities]);
     }
 }

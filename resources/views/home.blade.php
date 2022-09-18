@@ -33,7 +33,7 @@
                                             {{ $community->description }}
                                         </td>
                                         <td>
-                                            {{ $community->tags()->count() }}
+                                            {{ $community->tags_count }}
                                         </td>
                                         <td>
                                             {{ $community->posts_count }}
