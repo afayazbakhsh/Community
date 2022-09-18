@@ -82,6 +82,23 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="post_tags"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Post Tags') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="post_tags" type="text"
+                                        class="form-control @error('post_tags') is-invalid @enderror" name="post_tags"
+                                        value="{{ old('post_tags') }}" required autocomplete="post_tags" autofocus>
+
+                                    @error('post_tags')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="row mb-3 form-group">
 
                                 <div class="col-md-4 offset-md-4">
