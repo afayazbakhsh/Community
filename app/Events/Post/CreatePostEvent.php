@@ -22,11 +22,11 @@ class CreatePostEvent
     public $post;
     public $input;
 
-    public function __construct($post,$input)
+    public function __construct($post,$request)
     {
 
         $this->post = $post;
-        $this->input = $input;
+        $this->request = $request;
     }
 
     /**
